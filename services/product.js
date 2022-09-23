@@ -4,6 +4,14 @@ exports.getProductsService = async () => {
     const products = await Product.find({})
     return products
 }
+exports.getProductsNameAndQuantity = async () => {
+    // const products = await Product.find({},'-name -quantity') // all fields without name and quantity
+    const products = await Product.find({},'name quantity -_id')
+    // const products = await Product.find({},'name quantity -_id').sort({quantity:1})
+    // const products = await Product.find({},'name quantity -_id').limit(2) // Limit 2
+    // const products = await Product.find({}).limit(3)
+    return products
+}
 
 exports.getSingleProductService = async (id) => {
     const product = await Product.find(id);

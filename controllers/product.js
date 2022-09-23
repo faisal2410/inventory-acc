@@ -1,4 +1,4 @@
-const { getProductsService, createProductService, getSingleProductService, getProductsByQuery, getProductsByUnitStatus, getProductsOutOfStock, getProductsMinQuantity }=require("../services/product")
+const { getProductsService, createProductService, getSingleProductService, getProductsByQuery, getProductsByUnitStatus, getProductsOutOfStock, getProductsMinQuantity, getProductsNameAndQuantity }=require("../services/product")
 
 
 exports.getProducts = async (req, res, next) => {
@@ -8,6 +8,28 @@ exports.getProducts = async (req, res, next) => {
         //   .where("quantity").gt(100).lt(600)
         //   .limit(2).sort({ quantity: -1 })
         const products = await getProductsService();
+
+        res.status(200).json({
+            status: "success",
+            data: products
+        });
+
+    } catch (error) {
+        res.status(400).json({
+            status: "fail",
+            message: "can't get the data",
+            error: error.message,
+        });
+    }
+};
+
+exports.getProductsNameAndQuantity = async (req, res, next) => {
+    try {
+        // const products = await Product
+        //   .where("name").equals(/\w/)
+        //   .where("quantity").gt(100).lt(600)
+        //   .limit(2).sort({ quantity: -1 })
+        const products = await getProductsNameAndQuantity();
 
         res.status(200).json({
             status: "success",

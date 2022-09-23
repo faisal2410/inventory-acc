@@ -1,8 +1,9 @@
 
 const router = require("express").Router();
-const { createProduct, getProducts, getProduct, getProductsByQuery, getProductsUnitStatus, getProductsOutOfStock, getProductsMinQuantity }=require("../controllers/product")
+const { createProduct, getProducts, getProduct, getProductsByQuery, getProductsUnitStatus, getProductsOutOfStock, getProductsMinQuantity, getProductsNameAndQuantity }=require("../controllers/product")
 
 
+router.get("/allproductNameAndQuantity", getProductsNameAndQuantity);
 router.get("/:quantity", getProductsMinQuantity);
 router.get("/outofstock", getProductsOutOfStock);
 router.get("/:unit/:status", getProductsUnitStatus);
